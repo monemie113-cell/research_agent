@@ -1,0 +1,32 @@
+# 环境变量文件
+.env
+
+# Python 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# Python 缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE 配置
+.vscode/
+.idea/
+*.iml
+
+# 日志和临时文件
+*.log
+*.tmp
+.DS_Store
+
+# 模型文件
+models/
+*.safetensors
+*.bin
+
+# Docker 持久化数据
+qdrant_storage/
