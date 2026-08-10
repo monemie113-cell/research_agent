@@ -54,7 +54,7 @@ class HybridRetriever:
                 for i in top_indices
             ]
 
-        # 3. RRF 融合（面试题第44题：倒数排名融合）
+        # 3. RRF 融合   T44
         merged = self._rrf_fusion(vector_candidates, bm25_candidates, k=60)
 
         return merged[:top_k]

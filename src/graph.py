@@ -123,7 +123,7 @@ def tool_executor_node(state: AgentState) -> AgentState:
         else:
             try:
                 # 执行工具函数
-                result = tool_func(**tool_args)
+                result = tool_func.invoke(tool_args)
             except Exception as e:
                 result = f"工具执行异常：{str(e)}"
 
