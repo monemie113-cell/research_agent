@@ -2,7 +2,9 @@
 
 基于 **LangGraph** 构建的智能研究助手 Agent，具备工具调用、RAG 知识检索、混合检索、重排序及 Agentic RAG 自愈能力。
 
-> 📌 本项目是一个完整的 **AI Agent 应用开发学习与实践项目**
+> 📌 本项目是一个完整的 **AI Agent 应用开发学习与实践项目*
+>
+> ​      项目演示网址：https://modelscope.cn/studios/Stellan1103/research-agent
 
 ------
 
