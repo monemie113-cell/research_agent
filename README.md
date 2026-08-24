@@ -39,11 +39,13 @@ research_agent/
 ├── README.md                # 项目说明文档
 │
 ├── run_agent.py             # 主入口：终端交互式 Agent
+├── main_api.py              # FastAPI 服务
 ├── app.py                   # Web 界面入口（Gradio）
 ├── manage_kb.py             # 知识库管理脚本
 │
-├── test_*.py                # 测试脚本
+├── test/               	 # 测试脚本
 │   ├── test_env.py          # 环境验证
+│   ├── test_rag.py   		 # RAG 初步测试
 │   ├── test_rag_full.py     # RAG 全流程测试
 │   ├── test_agentic_rag.py  # Agentic RAG 测试
 │   └── test_search.py       # 联网搜索测试
