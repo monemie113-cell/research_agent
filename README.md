@@ -20,6 +20,7 @@
 | 🔀 **混合检索**           | 向量检索 + BM25 关键词检索 + RRF 融合排序，提升召回精度      |
 | 🎯 **Cross-Encoder 重排** | 使用 BGE-Reranker 对候选文档精排，确保最相关内容排在前面     |
 | 🔄 **Agentic RAG**        | 检索质量评估 + 自动查询改写 + 重试，让 Agent 自己判断并优化检索 |
+| 🔌 **FastAPI 支持**       | 把 Agent 能力暴露为 RESTful API 供其他系统调用                |
 | 🌐 **联网搜索**           | 集成 Tavily 搜索引擎，Agent 可获取实时信息                   |
 | 📄 **多格式文档**         | 支持 `.txt`、`.pdf`、`.docx` 格式文档的解析与索引            |
 | 🐳 **Docker 支持**        | 向量数据库 Qdrant 支持 Docker 一键启动，数据持久化           |
