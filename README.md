@@ -102,7 +102,7 @@ run_agent.py
 
 ## 🏗️ 技术架构
 
-![项目整体架构图](README.assets/项目整体架构图-1786289269207-5.png)
+![项目整体架构图](README.assets/项目整体架构图.png)
 
 ## 🔢 一次用户请求的完整数据传递流程
 
@@ -118,7 +118,7 @@ run_agent.py
 
 ## 🔍 RAG 检索流程 (Agent 调用 search_knowledge 工具)
 
-![Agent 调用 search_knowledge](README.assets/Agent 调用 search_knowledge.png)
+![Agent 调用 search_knowledge](README.assets/search_knowledge.png)
 
 
 
