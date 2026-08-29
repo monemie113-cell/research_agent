@@ -339,4 +339,4 @@ MIT License
 
 ------
 
-**Happy Building ! **
+**Happy Building**
