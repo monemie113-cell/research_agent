@@ -42,12 +42,37 @@ def delete_document(source_name: str):
     print(f"✅ 已删除: {source_name}")
 
 
-def add_document(file_path: str):
-    """添加新文档到知识库"""
-    docs = load_document(file_path)
-    chunks = chunk_by_paragraph(docs)
-    store.add_documents(chunks)
-    print(f"✅ 已添加: {os.path.basename(file_path)}，共 {len(chunks)} 个 Chunk")
+def add_document(path: str):
+    """添加文档或目录下的所有文档到知识库"""
+    if os.path.isdir(path):
+        # 如果是目录，遍历所有支持的文件
+        supported_ext = ('.txt', '.pdf', '.docx')
+        files = [f for f in os.listdir(path) if f.lower().endswith(supported_ext)]
+        if not files:
+            print(f"⚠️ 目录 {path} 中没有支持的文档（.txt, .pdf, .docx）")
+            return
+
+        total = 0
+        for filename in files:
+            file_path = os.path.join(path, filename)
+            try:
+                docs = load_document(file_path)
+                chunks = chunk_by_paragraph(docs)
+                store.add_documents(chunks)
+                total += len(chunks)
+                print(f"✅ 已添加: {filename}，共 {len(chunks)} 个 Chunk")
+            except Exception as e:
+                print(f"❌ {filename} 入库失败: {e}")
+        print(f"\n🎉 全部完成！共入库 {total} 个 Chunk")
+    else:
+        # 单个文件
+        try:
+            docs = load_document(path)
+            chunks = chunk_by_paragraph(docs)
+            store.add_documents(chunks)
+            print(f"✅ 已添加: {os.path.basename(path)}，共 {len(chunks)} 个 Chunk")
+        except Exception as e:
+            print(f"❌ 入库失败: {e}")
 
 
 if __name__ == "__main__":

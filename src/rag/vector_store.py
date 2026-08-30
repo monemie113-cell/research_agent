@@ -9,10 +9,11 @@ from src.rag.embedding import encode_texts, get_embedding_model
 # 向量数据库封装（使用 Qdrant）t15
 class VectorStore:
 
-    def __init__(self, collection_name: str = "research_docs", host: str = "localhost", port: int = 6333):
+    def __init__(self, collection_name: str = "research_docs", host: str = ":memory:", port: int = 6333):
         self.collection_name = collection_name
-        self.client = QdrantClient(host=host, port=port)
+        self.client = QdrantClient(":memory:")
         self._ensure_collection()
+        print("✅ 已启用内存模式（数据不持久化，重启后丢失）")
 
     def _ensure_collection(self):
         """确保 Collection 存在，不存在则创建"""
