@@ -20,6 +20,7 @@
 | 🔀 **混合检索**           | 向量检索 + BM25 关键词检索 + RRF 融合排序，提升召回精度      |
 | 🎯 **Cross-Encoder 重排** | 使用 BGE-Reranker 对候选文档精排，确保最相关内容排在前面     |
 | 🔄 **Agentic RAG**        | 检索质量评估 + 自动查询改写 + 重试，让 Agent 自己判断并优化检索 |
+| 🔌 **FastAPI 支持**       | 把 Agent 能力暴露为 RESTful API 供其他系统调用                |
 | 🌐 **联网搜索**           | 集成 Tavily 搜索引擎，Agent 可获取实时信息                   |
 | 📄 **多格式文档**         | 支持 `.txt`、`.pdf`、`.docx` 格式文档的解析与索引            |
 | 🐳 **Docker 支持**        | 向量数据库 Qdrant 支持 Docker 一键启动，数据持久化           |
@@ -102,7 +103,7 @@ run_agent.py
 
 ## 🏗️ 技术架构
 
-![项目整体架构图](README.assets/项目整体架构图-1786289269207-5.png)
+![项目整体架构图](README.assets/项目整体架构图.png)
 
 ## 🔢 一次用户请求的完整数据传递流程
 
@@ -118,9 +119,12 @@ run_agent.py
 
 ## 🔍 RAG 检索流程 (Agent 调用 search_knowledge 工具)
 
-![Agent 调用 search_knowledge](README.assets/Agent 调用 search_knowledge.png)
+![Agent 调用 search_knowledge](README.assets/search_knowledge.png)
 
 
+
+## ▶️ 程序运行时的部分数据传递过程示意
+![数据传递](README.assets/运行过程中数据传递示意.png)
 
 ------
 
@@ -335,4 +339,4 @@ MIT License
 
 ------
 
-**Happy Building ! **
+**Happy Building**
