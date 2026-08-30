@@ -8,8 +8,8 @@ from src.graph import create_agent
 from langchain_core.messages import HumanMessage
 
 
+# 交互式 ReAct Agent 运行入口
 def main():
-    """交互式 ReAct Agent 运行入口"""
 
     print("=" * 60)
     print("🧠 欢迎使用 ReAct Agent 交互终端")
@@ -21,9 +21,10 @@ def main():
     agent = create_agent()
 
     # 初始化会话状态
+    # 在整个运行过程中，所有函数都围绕着该字典运转
     state = {
         "messages": [],
-        "current_step": 0,
+        "current_step": 0,  #循环步数
     }
 
     while True:
@@ -39,8 +40,8 @@ def main():
                 continue
 
             # 将用户消息追加到状态
-            state["messages"].append(HumanMessage(content=user_input))
-            state["current_step"] = 0
+            state["messages"].append(HumanMessage(content=user_input))  #以用户输入来更新状态
+            state["current_step"] = 0                                   #重置步数
 
             print("\n" + "-" * 40)
 

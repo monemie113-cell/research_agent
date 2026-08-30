@@ -15,25 +15,25 @@ class HybridRetriever:
         self._bm25_index = None
         self._all_chunks = []  # 用于 BM25 构建时保存所有文本
 
+    # 构建 BM25 索引（需要所有文档的文本）
+    # 实际生产环境中，这部分应该在文档入库时同步构建
     def _build_bm25_index(self, chunks: List[Dict[str, Any]]):
-        """
-        构建 BM25 索引（需要所有文档的文本）
-        实际生产环境中，这部分应该在文档入库时同步构建
-        """
         self._all_chunks = chunks
         tokenized_corpus = [self._tokenize(chunk["text"]) for chunk in chunks]
         self._bm25_index = BM25Okapi(tokenized_corpus)
 
+    # 中文分词（BM25 需要）
     def _tokenize(self, text: str) -> List[str]:
-        """中文分词（BM25 需要）"""
         return list(jieba.cut(text))
 
-    def search(self, query: str, top_k: int = 5, alpha: float = 0.5) -> List[Dict[str, Any]]:
+
         """
         混合检索主入口
         - vector_weight: 向量检索的权重（剩余为 BM25 权重）
         - top_k: 最终返回的文档数量
         """
+    def search(self, query: str, top_k: int = 5, alpha: float = 0.5) -> List[Dict[str, Any]]:
+       
         # 1. 向量检索：召回 top_k * 2 个候选（为后续重排留足空间）
         vector_candidates = self.vector_store.search(query, top_k=top_k * 2)
 

@@ -39,11 +39,10 @@ if not api_key:
 
 print(f"✅ 使用 DeepSeek API: {api_key[:10]}...")
 
-
 # 创建原生 OpenAI 客户端（指向 DeepSeek）
 client = openai.OpenAI(
     api_key=api_key,
-    base_url=base_url + "/v1",  # DeepSeek 官方要求加 /v1
+    base_url=base_url + "/v1",    # DeepSeek 官方要求加 /v1 后缀
 )
 
 os.environ["OPENAI_API_KEY"] = api_key
@@ -51,7 +50,7 @@ os.environ["OPENAI_API_KEY"] = api_key
 # 用 client 参数传入 ChatOpenAI
 llm = ChatOpenAI(
     model="deepseek-chat",
-    base_url=base_url + "/v1",   # DeepSeek 要求 /v1 后缀
+    base_url=base_url + "/v1",
     temperature=0.3,
 )
 
@@ -65,8 +64,7 @@ llm_with_tools = llm.bind_tools(TOOLS)
 
 def agent_node(state: AgentState) -> AgentState:
     """
-    核心节点：Agent 的"思考"节点。
-    面试题第67题：ReAct 中的 Thought 步骤在这里体现。
+    核心节点：Agent 的"思考"节点。ReAct 中的 Thought 步骤在这里体现。t67
     LLM 根据当前对话状态，决定下一步是调用工具还是直接回答。
     """
     messages = state["messages"]
@@ -169,7 +167,7 @@ def build_agent_graph():
     """构建并返回完整的 LangGraph 状态图"""
 
     # 创建状态图（指定状态类型为 AgentState）
-    workflow = StateGraph(AgentState)
+    workflow = StateGraph(AgentState)                       # 此时还是空流程图
 
     # 添加节点
     workflow.add_node("agent", agent_node)                  # 思考决策节点
@@ -178,7 +176,7 @@ def build_agent_graph():
     # 设置入口点
     workflow.set_entry_point("agent")
 
-    # 添加条件边：agent → 根据决策 → tool_executor 或 END
+    # 添加条件边：agent → 根据决策 → tool_executor 或 END     # 分支边
     workflow.add_conditional_edges(
         "agent",
         should_continue,
